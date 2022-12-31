@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 12:55:52 by andrferr          #+#    #+#             */
-/*   Updated: 2022/12/31 13:57:29 by andrferr         ###   ########.fr       */
+/*   Created: 2022/12/31 12:03:42 by andrferr          #+#    #+#             */
+/*   Updated: 2022/12/31 17:15:58 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/philo.h"
+#include "../includes/philo.h"
 
-int	main(int argc, char **argv)
+int	check_dead(t_philo *philo)
 {
-	t_info *info;
+	if (timestamp() < philo->last_meal - philo->info->time_die)
+}
 
-	if (argc != 5 && argc != 6)
-		return (1);
-	if (!check_argc_validity(argv, argc))
-		return (1);
-	info = get_info(argv);
-	if (!info)
-		return (1);
-	if (!philo_init(info))
-		return (1);
+void	*philo_life(void *p)
+{
+	t_philo *philo;
+
+	philo = (t_philo *)p;
+	printf("%d %ld\n", philo->nbr, philo->start);
 	return (0);
 }

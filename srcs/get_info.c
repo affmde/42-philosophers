@@ -6,14 +6,16 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:08:18 by andrferr          #+#    #+#             */
-/*   Updated: 2022/12/30 14:08:19 by andrferr         ###   ########.fr       */
+/*   Updated: 2022/12/31 13:56:36 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	get_info(t_info *info, char **argv)
+t_info	*get_info(char **argv)
 {
+	t_info *info;
+	
 	info = (t_info *)malloc(sizeof(t_info));
 	if (!info)
 		return (0);
@@ -25,5 +27,8 @@ int	get_info(t_info *info, char **argv)
 		info->nbr_times_eat = atoi(argv[5]);
 	if (info->time_eat == 0)
 		return (0);
-	return (1);
+	info->philos = (t_philo *)malloc(sizeof(t_philo) * info->nbr_philos);
+	if (!info->philos)
+		return (0);
+	return (info);
 }

@@ -6,44 +6,44 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:25:49 by andrferr          #+#    #+#             */
-/*   Updated: 2022/12/30 15:24:45 by andrferr         ###   ########.fr       */
+/*   Updated: 2022/12/31 17:05:32 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int	philo_populate(t_philo **philo, t_info *info)
+static int	philo_populate(t_info *info)
 {
 	int	i;
-	pthread_mutex_t *mutex;
 
-	mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * info->nbr_philos);
-	if (!philo)
-		return (0);
-	i = 0;
-	//printf("nbr philos: %d", info->nbr_philos);
-	while (i < info->nbr_philos)
+	i = -1;
+	while (++i < info->nbr_philos)
 	{
-		(*philo)[i].nbr = i + 1;
-		(*philo)[i].meal_counter = 0;
-		(*philo)[i].last_meal = 0;
-		(*philo)[i].l_fork = philo[i]->nbr - 1;
-		if ((*philo)[i].nbr == info->nbr_philos)
-			(*philo)[i].r_fork = 0;
+		info->philos[i].start = timestamp();
+		info->philos[i].nbr = i + 1;
+		info->philos[i].meal_counter = 0;
+		info->philos[i].last_meal = 0;
+		if (pthread_mutex_init(&info->philos[i].l_fork, NULL))
+			return (0);
+		if (info->philos[i].nbr == info->nbr_philos)
+			info->philos[i].r_fork = &info->philos[0].l_fork;
 		else
-			(*philo)[i].r_fork = philo[i]->nbr + 1;
-		i++;
+			info->philos[i].r_fork = &info->philos[i + 1].l_fork;
+		info->philos[i].info = info;
+		if (pthread_create(&info->philos[i].thread, NULL, &philo_life, &info->philos[i]))
+			return (0);
 	}
+	i = -1;
+	while (++i < info->nbr_philos)
+		if (pthread_join(info->philos[i].thread, NULL))
+			return (0);
 	return (1);
 }
 
 
-int	philo_init(t_philo **philo, t_info *info)
+int	philo_init(t_info *info)
 {
-	*philo = (t_philo *)malloc(sizeof(t_philo) * info->nbr_philos);
-	if (!philo)
-		return (0);
-	if (!philo_populate(philo, info))
+	if (!philo_populate(info))
 		return (0);
 	return (1);
 }

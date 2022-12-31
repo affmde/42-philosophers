@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:19:12 by andrferr          #+#    #+#             */
-/*   Updated: 2022/12/30 12:58:38 by andrferr         ###   ########.fr       */
+/*   Updated: 2022/12/31 17:09:11 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,21 @@ int	nbr_of_digits(long n)
 	if (n < 10)
 		return (1);
 	return (1 + nbr_of_digits(n / 10));
+}
+
+long long	timestamp(void)
+{
+	struct timeval time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+void	go_sleep(int t)
+{
+	long int	time;
+	
+	time = timestamp();
+	while (timestamp() - time < t)
+		usleep(t / 10);
 }
