@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:56:41 by andrferr          #+#    #+#             */
-/*   Updated: 2022/12/31 17:05:20 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:18:15 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_philo
 {
 	int				nbr;
 	int				meal_counter;
+	int				alive;
 	long int		last_meal;
 	long int		start;
 	pthread_t		thread;

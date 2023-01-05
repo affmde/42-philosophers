@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:25:49 by andrferr          #+#    #+#             */
-/*   Updated: 2022/12/31 17:05:32 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:18:37 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	philo_populate(t_info *info)
 		info->philos[i].nbr = i + 1;
 		info->philos[i].meal_counter = 0;
 		info->philos[i].last_meal = 0;
+		info->philos[i].alive = 1;
 		if (pthread_mutex_init(&info->philos[i].l_fork, NULL))
 			return (0);
 		if (info->philos[i].nbr == info->nbr_philos)
