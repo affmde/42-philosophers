@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:31:41 by andrferr          #+#    #+#             */
-/*   Updated: 2022/12/30 13:05:14 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:41:08 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,3 @@ int	check_argc_validity(char **argv, int argc)
 	}
 	return (1);
 }
-

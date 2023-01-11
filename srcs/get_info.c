@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:08:18 by andrferr          #+#    #+#             */
-/*   Updated: 2022/12/31 13:56:36 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:40:58 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_info	*get_info(char **argv)
 {
-	t_info *info;
-	
+	t_info	*info;
+
 	info = (t_info *)malloc(sizeof(t_info));
 	if (!info)
 		return (0);

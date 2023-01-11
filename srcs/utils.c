@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:19:12 by andrferr          #+#    #+#             */
-/*   Updated: 2022/12/31 17:09:11 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:39:50 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	atoi(const char *str)
 	return ((int)res * control);
 }
 
-
 int	check_isdigit(int num)
 {
 	if (num >= 48 && num <= 57)
@@ -60,17 +59,8 @@ int	nbr_of_digits(long n)
 
 long long	timestamp(void)
 {
-	struct timeval time;
+	struct timeval	time;
 
 	gettimeofday(&time, NULL);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
-}
-
-void	go_sleep(int t)
-{
-	long int	time;
-	
-	time = timestamp();
-	while (timestamp() - time < t)
-		usleep(t / 10);
 }

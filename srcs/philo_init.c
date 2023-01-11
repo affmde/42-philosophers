@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:25:49 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/04 15:18:37 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:40:15 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static int	philo_populate(t_info *info)
 			return (0);
 	return (1);
 }
-
 
 int	philo_init(t_info *info)
 {
