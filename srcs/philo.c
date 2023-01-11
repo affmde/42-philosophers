@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 12:03:42 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/11 15:40:49 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:23:59 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	check_dead(t_philo *philo)
 static int	take_fork_and_eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->l_fork);
+	take_fork_msg(philo);
 	pthread_mutex_lock(philo->r_fork);
 	take_fork_msg(philo);
 	eating(philo);
@@ -47,6 +48,8 @@ void	*philo_life(void *p)
 	t_philo	*philo;
 
 	philo = (t_philo *)p;
+	if (philo->nbr % 2 != 0)
+		usleep(philo->info->time_sleep);
 	while (check_dead(philo))
 	{
 		if (philo->info->nbr_times_eat)
