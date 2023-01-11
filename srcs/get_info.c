@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:08:18 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/11 15:40:58 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:50:26 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ t_info	*get_info(char **argv)
 	if (argv[5])
 		info->nbr_times_eat = atoi(argv[5]);
 	if (info->time_eat == 0)
+	{
+		free(info);
 		return (0);
+	}
 	info->philos = (t_philo *)malloc(sizeof(t_philo) * info->nbr_philos);
 	if (!info->philos)
 		return (0);
