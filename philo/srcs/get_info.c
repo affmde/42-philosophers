@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:08:18 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/12 11:33:46 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:22:18 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ t_info	*get_info(char **argv)
 	info = (t_info *)malloc(sizeof(t_info));
 	if (!info)
 		return (0);
+	if (pthread_mutex_init(&info->message, NULL))
+		return (0);
+	if (pthread_mutex_init(&info->dead, NULL))
+		return (0);
+	info->philo_dead = 0;
 	info->nbr_philos = atoi(argv[1]);
 	info->time_die = atoi(argv[2]);
 	info->time_eat = atoi(argv[3]);

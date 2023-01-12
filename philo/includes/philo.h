@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:56:41 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/12 11:57:55 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:22:09 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,15 @@ typedef struct s_philo
 
 typedef struct s_info
 {
+	pthread_mutex_t dead;
+	pthread_mutex_t message;
+	t_philo	*philos;
 	int		nbr_philos;
 	int		time_die;
 	int		time_eat;
 	int		time_sleep;
 	int		nbr_times_eat;
-	t_philo	*philos;
+	int		philo_dead;
 }	t_info;
 
 t_info			*get_info(char **argv);
@@ -56,8 +59,8 @@ void			eating_msg(t_philo *philo);
 void			sleeping_msg(t_philo *philo);
 void			thinking_msg(t_philo *philo);
 void			dead_msg(t_philo *philo);
-void			eating(t_philo *philo);
-void			sleeping(t_philo *philo);
+int				eating(t_philo *philo);
+int				sleeping(t_philo *philo);
 void			clean_info(t_info *info);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:55:52 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/12 11:57:08 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:34:28 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ int	main(int argc, char **argv)
 		clean_info(info);
 		return (0);
 	}
-	if (!philo_init(info))
-	{
-		clean_info(info);
-		return (1);
-	}
+	philo_init(info);
 	clean_info(info);
 	return (0);
 }
