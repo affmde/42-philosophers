@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 12:03:42 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/11 17:23:59 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:07:42 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	*philo_life(void *p)
 	t_philo	*philo;
 
 	philo = (t_philo *)p;
-	if (philo->nbr % 2 != 0)
-		usleep(philo->info->time_sleep);
+	if (philo->nbr % 2 == 0)
+		usleep(philo->info->time_eat * 1000);
 	while (check_dead(philo))
 	{
 		if (philo->info->nbr_times_eat)

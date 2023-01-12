@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:56:41 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/11 15:42:41 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:06:28 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void		thinking_msg(t_philo *philo);
 void		dead_msg(t_philo *philo);
 void		eating(t_philo *philo);
 void		sleeping(t_philo *philo);
+void		clean_info(t_info *info);
 
 #endif
