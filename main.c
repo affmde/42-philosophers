@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:55:52 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/12 11:12:00 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:57:08 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (info->nbr_philos == 1)
 	{
-		printf("%lld 1 died\n", timestamp());
+		printf("%lu 1 died\n", timestamp());
 		clean_info(info);
 		return (0);
 	}

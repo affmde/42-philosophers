@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:19:12 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/11 15:39:50 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:32:29 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	nbr_of_digits(long n)
 	return (1 + nbr_of_digits(n / 10));
 }
 
-long long	timestamp(void)
+unsigned long	timestamp(void)
 {
 	struct timeval	time;
 

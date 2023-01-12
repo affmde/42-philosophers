@@ -6,17 +6,21 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 12:03:42 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/12 11:07:42 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:58:20 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+static int	check_other_philos_life(t_philo *philo);
 
 static int	check_dead(t_philo *philo)
 {
 	long long	no_eat_time;
 	long long	time;
 
+	if (!check_other_philos_life(philo))
+		return (0);
 	time = timestamp();
 	if (philo->meal_counter)
 		no_eat_time = time - philo->last_meal;
@@ -26,7 +30,7 @@ static int	check_dead(t_philo *philo)
 	{
 		philo->alive = 0;
 		dead_msg(philo);
-		exit (0);
+		return (0);
 	}
 	return (1);
 }
@@ -43,6 +47,20 @@ static int	take_fork_and_eat(t_philo *philo)
 	return (1);
 }
 
+static int	check_other_philos_life(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->info->nbr_philos)
+	{
+		if (philo->info->philos[i].alive == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	*philo_life(void *p)
 {
 	t_philo	*philo;
@@ -54,9 +72,9 @@ void	*philo_life(void *p)
 	{
 		if (philo->info->nbr_times_eat)
 			if (philo->meal_counter >= philo->info->nbr_times_eat)
-				break ;
+				return (0);
 		if (!philo->alive)
-			break ;
+			return (0);
 		take_fork_and_eat(philo);
 		sleeping(philo);
 		thinking_msg(philo);
