@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:14:29 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/12 14:36:44 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:52:33 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	eating(t_philo *philo)
 {
-	if (philo->info->philo_dead)
-		return (0);
 	eating_msg(philo);
 	philo->meal_counter++;
 	philo->last_meal = timestamp();
@@ -25,9 +23,7 @@ int	eating(t_philo *philo)
 
 int	sleeping(t_philo *philo)
 {
-	if (philo->info->philo_dead)
-		return (0);
-	usleep(philo->info->time_sleep * 1000);
 	sleeping_msg(philo);
+	usleep(philo->info->time_sleep * 1000);
 	return (1);
 }

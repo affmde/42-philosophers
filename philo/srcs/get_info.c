@@ -6,11 +6,22 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:08:18 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/12 14:22:18 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:29:27 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+static void	assign_args(char **argv, t_info	**info)
+{
+	(*info)->philo_dead = 0;
+	(*info)->nbr_philos = atoi(argv[1]);
+	(*info)->time_die = atoi(argv[2]);
+	(*info)->time_eat = atoi(argv[3]);
+	(*info)->time_sleep = atoi(argv[4]);
+	if (argv[5])
+		(*info)->nbr_times_eat = atoi(argv[5]);
+}
 
 t_info	*get_info(char **argv)
 {
@@ -20,16 +31,11 @@ t_info	*get_info(char **argv)
 	if (!info)
 		return (0);
 	if (pthread_mutex_init(&info->message, NULL))
+	{
+		free(info);
 		return (0);
-	if (pthread_mutex_init(&info->dead, NULL))
-		return (0);
-	info->philo_dead = 0;
-	info->nbr_philos = atoi(argv[1]);
-	info->time_die = atoi(argv[2]);
-	info->time_eat = atoi(argv[3]);
-	info->time_sleep = atoi(argv[4]);
-	if (argv[5])
-		info->nbr_times_eat = atoi(argv[5]);
+	}
+	assign_args(argv, &info);
 	if (info->time_eat == 0)
 	{
 		free(info);

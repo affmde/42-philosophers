@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:56:41 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/13 11:31:31 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:18:58 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_philo
 
 typedef struct s_info
 {
-	pthread_mutex_t	dead;
 	pthread_mutex_t	message;
 	t_philo			*philos;
 	int				nbr_philos;

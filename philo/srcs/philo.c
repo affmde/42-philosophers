@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 12:03:42 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/13 11:29:01 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:21:59 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	check_dead(t_philo *philo)
 		no_eat_time = time - philo->last_meal;
 	else
 		no_eat_time = time - philo->start;
-	if (no_eat_time > (unsigned long)philo->info->time_die)
+	if (no_eat_time >= (unsigned long)philo->info->time_die)
 	{
 		philo->info->philo_dead = 1;
 		philo->alive = 0;
@@ -36,13 +36,11 @@ static int	check_dead(t_philo *philo)
 
 static int	take_fork_and_eat(t_philo *philo)
 {
-	if (philo->info->philo_dead)
-		return (0);
 	pthread_mutex_lock(&philo->l_fork);
 	take_fork_msg(philo);
 	if (philo->info->nbr_philos == 1)
 	{
-		usleep((philo->info->time_die + 1) * 1000);
+		usleep((philo->info->time_die) * 1000);
 		pthread_mutex_unlock(&philo->l_fork);
 		return (0);
 	}
@@ -69,15 +67,15 @@ void	*philo_life(void *p)
 		usleep(philo->info->time_eat * 1000);
 	while (check_dead(philo))
 	{
+		if (!take_fork_and_eat(philo) && !philo->info->philo_dead)
+			continue ;
+		if (philo->info->nbr_philos > 1 && !philo->info->philo_dead)
+			sleeping(philo);
+		if (philo->info->nbr_philos > 1 && !philo->info->philo_dead)
+			thinking_msg(philo);
 		if (philo->info->nbr_times_eat)
 			if (philo->meal_counter >= philo->info->nbr_times_eat)
 				return (0);
-		if (!take_fork_and_eat(philo))
-			continue ;
-		if (philo->info->nbr_philos > 1)
-			sleeping(philo);
-		if (philo->info->nbr_philos > 1)
-			thinking_msg(philo);
 	}
 	return (0);
 }
