@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 12:03:42 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/12 16:56:22 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:29:01 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ static int	take_fork_and_eat(t_philo *philo)
 		return (0);
 	pthread_mutex_lock(&philo->l_fork);
 	take_fork_msg(philo);
+	if (philo->info->nbr_philos == 1)
+	{
+		usleep((philo->info->time_die + 1) * 1000);
+		pthread_mutex_unlock(&philo->l_fork);
+		return (0);
+	}
 	pthread_mutex_lock(philo->r_fork);
 	if (philo->info->philo_dead)
 	{
@@ -66,13 +72,12 @@ void	*philo_life(void *p)
 		if (philo->info->nbr_times_eat)
 			if (philo->meal_counter >= philo->info->nbr_times_eat)
 				return (0);
-		if (philo->info->philo_dead)
-			return (0);
-		take_fork_and_eat(philo);
-		sleeping(philo);
-		if (philo->info->philo_dead)
-			return (0);
-		thinking_msg(philo);
+		if (!take_fork_and_eat(philo))
+			continue ;
+		if (philo->info->nbr_philos > 1)
+			sleeping(philo);
+		if (philo->info->nbr_philos > 1)
+			thinking_msg(philo);
 	}
 	return (0);
 }
