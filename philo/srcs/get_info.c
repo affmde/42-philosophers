@@ -6,11 +6,23 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:08:18 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/13 17:29:27 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:25:17 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+static void	set_to_zero(t_info *info)
+{
+	int	i;
+
+	i = 0;
+	while (i < info->nbr_philos)
+	{
+		memset(&info->philos[i], 0, sizeof(info->philos[i]));
+		i++;
+	}
+}
 
 static void	assign_args(char **argv, t_info	**info)
 {
@@ -36,7 +48,7 @@ t_info	*get_info(char **argv)
 		return (0);
 	}
 	assign_args(argv, &info);
-	if (info->time_eat == 0)
+	if (info->time_eat == 0 || info->nbr_philos == 0)
 	{
 		free(info);
 		return (0);
@@ -44,5 +56,7 @@ t_info	*get_info(char **argv)
 	info->philos = (t_philo *)malloc(sizeof(t_philo) * info->nbr_philos);
 	if (!info->philos)
 		return (0);
+	set_to_zero(info);
+	info->start = timestamp();
 	return (info);
 }

@@ -6,36 +6,25 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 12:03:42 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/15 08:59:37 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:28:50 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	check_dead(t_philo *philo)
+static int	enough_eat(t_philo *philo)
 {
-	unsigned long	no_eat_time;
-	unsigned long	time;
-
-	if (philo->info->philo_dead)
-		return (0);
-	time = timestamp();
-	if (philo->meal_counter)
-		no_eat_time = time - philo->last_meal;
-	else
-		no_eat_time = time - philo->start;
-	if (no_eat_time >= (unsigned long)philo->info->time_die)
+	if (philo->info->nbr_times_eat)
 	{
-		philo->info->philo_dead = philo->nbr;
-		philo->alive = 0;
-		return (0);
+		if (philo->meal_counter >= philo->info->nbr_times_eat)
+			return (1);
 	}
-	return (1);
+	return (0);
 }
 
 static int	take_fork_and_eat(t_philo *philo)
 {
-	if ((philo->info->philo_dead || philo->meal_counter >= philo->info->nbr_times_eat) && philo->info->nbr_times_eat)
+	if (is_philo_dead(philo->info) || enough_eat(philo))
 		return (0);
 	pthread_mutex_lock(&philo->l_fork);
 	take_fork_msg(philo);
@@ -67,12 +56,13 @@ void	*philo_life(void *p)
 	philo = (t_philo *)p;
 	if (philo->nbr % 2 == 0)
 		usleep(philo->info->time_eat * 1000);
-	while (check_dead(philo))
+	while (!is_philo_dead(philo->info))
 	{
-		if (philo->info->nbr_philos > 1 && !philo->info->philo_dead && philo->meal_counter)
+		if (philo->info->nbr_philos > 1 && !philo->info->philo_dead
+			&& philo->meal_counter)
 			thinking_msg(philo);
-		if (!take_fork_and_eat(philo) && !philo->info->philo_dead)
-			continue ;
+		if (!take_fork_and_eat(philo))
+			return (0);
 		if (philo->info->nbr_philos > 1 && !philo->info->philo_dead)
 			sleeping(philo);
 		if (philo->info->nbr_philos > 1 && !philo->info->philo_dead)

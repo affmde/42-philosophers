@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:25:49 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/14 17:05:01 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:24:54 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	philo_populate(t_info *info)
 	i = -1;
 	while (++i < info->nbr_philos)
 	{
-		info->philos[i].start = timestamp();
 		info->philos[i].nbr = i + 1;
 		info->philos[i].meal_counter = 0;
 		info->philos[i].last_meal = 0;
@@ -46,27 +45,6 @@ static int	philo_populate(t_info *info)
 				&philo_life, &info->philos[i]))
 			return (0);
 	}
-	return (1);
-}
-
-int	handle_death(t_info *info)
-{
-	int	i;
-
-	while (1)
-	{
-		i = 0;
-		while (i < info->nbr_philos)
-		{
-			if (!check_dead(&info->philos[i]))
-			{
-				dead_msg(&info->philos[info->philo_dead - 1]);
-				return (0);
-			}
-			i++;
-		}
-		
-	}	
 	return (1);
 }
 
