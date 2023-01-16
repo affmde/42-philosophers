@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:19:12 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/12 11:32:29 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:38:16 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,15 @@ unsigned long	timestamp(void)
 
 	gettimeofday(&time, NULL);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+void	ft_usleep(unsigned long t)
+{
+	unsigned long	time;
+	unsigned long	end;
+
+	time = timestamp();
+	end = time + t;
+	while (timestamp() < end)
+		;
 }

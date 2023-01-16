@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:56:41 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/16 13:24:28 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:31:19 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdio.h>
 # include <pthread.h>
-# include <unistd.h>
 # include <stdlib.h>
 # include <sys/time.h>
 # include <string.h>
@@ -34,7 +33,7 @@ typedef struct s_philo
 
 typedef struct s_info
 {
-	pthread_mutex_t		message;
+
 	t_philo				*philos;
 	int					nbr_philos;
 	int					time_die;
@@ -43,6 +42,7 @@ typedef struct s_info
 	int					nbr_times_eat;
 	int					philo_dead;
 	unsigned long		start;
+	pthread_mutex_t		message;
 }	t_info;
 
 t_info			*get_info(char **argv);
@@ -59,11 +59,13 @@ void			eating_msg(t_philo *philo);
 void			sleeping_msg(t_philo *philo);
 void			thinking_msg(t_philo *philo);
 void			dead_msg(t_philo *philo);
-int				eating(t_philo *philo);
-int				sleeping(t_philo *philo);
+void			eating(t_philo *philo);
+void			sleeping(t_philo *philo);
 void			clean_info(t_info *info);
 int				wait_thread(t_info **info);
 int				is_philo_dead(t_info *info);
 int				handle_death(t_info *info);
+int				enough_eat(t_philo *philo);
+void			ft_usleep(unsigned long t);
 
 #endif

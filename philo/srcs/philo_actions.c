@@ -6,24 +6,22 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:14:29 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/16 13:20:57 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:31:03 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	eating(t_philo *philo)
+void	eating(t_philo *philo)
 {
 	eating_msg(philo);
-	philo->meal_counter++;
 	philo->last_meal = timestamp();
-	usleep(philo->info->time_eat * 1000);
-	return (1);
+	philo->meal_counter++;
+	ft_usleep(philo->info->time_eat);
 }
 
-int	sleeping(t_philo *philo)
+void	sleeping(t_philo *philo)
 {
 	sleeping_msg(philo);
-	usleep(philo->info->time_sleep * 1000);
-	return (1);
+	ft_usleep(philo->info->time_sleep);
 }

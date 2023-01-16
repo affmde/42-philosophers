@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:08:18 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/16 13:25:17 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:33:09 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,27 @@ static void	assign_args(char **argv, t_info	**info)
 		(*info)->nbr_times_eat = atoi(argv[5]);
 }
 
+static int	check_to_return(char **argv, t_info *info)
+{
+	if (pthread_mutex_init(&info->message, NULL))
+	{
+		free(info);
+		return (0);
+	}
+	assign_args(argv, &info);
+	if (argv[5] && atoi(argv[5]) == 0)
+	{
+		free(info);
+		return (0);
+	}
+	if (info->time_eat == 0 || info->nbr_philos == 0)
+	{
+		free(info);
+		return (0);
+	}
+	return (1);
+}
+
 t_info	*get_info(char **argv)
 {
 	t_info	*info;
@@ -42,17 +63,8 @@ t_info	*get_info(char **argv)
 	info = (t_info *)malloc(sizeof(t_info));
 	if (!info)
 		return (0);
-	if (pthread_mutex_init(&info->message, NULL))
-	{
-		free(info);
+	if (!check_to_return(argv, info))
 		return (0);
-	}
-	assign_args(argv, &info);
-	if (info->time_eat == 0 || info->nbr_philos == 0)
-	{
-		free(info);
-		return (0);
-	}
 	info->philos = (t_philo *)malloc(sizeof(t_philo) * info->nbr_philos);
 	if (!info->philos)
 		return (0);
