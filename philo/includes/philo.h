@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:56:41 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/13 15:18:58 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:45:11 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ void			dead_msg(t_philo *philo);
 int				eating(t_philo *philo);
 int				sleeping(t_philo *philo);
 void			clean_info(t_info *info);
+int				wait_thread(t_info **info);
+int				check_dead(t_philo *philo);
 
 #endif
