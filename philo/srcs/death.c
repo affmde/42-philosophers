@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:55:58 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/16 16:40:21 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:13:45 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	check_dead(t_philo *philo)
 	if (no_eat_time >= (unsigned long)philo->info->time_die)
 	{
 		philo->info->philo_dead = philo->nbr;
-		philo->alive = 0;
 		return (0);
 	}
 	return (1);

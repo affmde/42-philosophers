@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:19:12 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/16 17:38:16 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:56:21 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,6 @@ int	atoi(const char *str)
 		res = res * 10 + (str[i++] - '0');
 	}
 	return ((int)res * control);
-}
-
-int	check_isdigit(int num)
-{
-	if (num >= 48 && num <= 57)
-		return (1);
-	return (0);
 }
 
 int	nbr_of_digits(long n)

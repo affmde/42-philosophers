@@ -6,11 +6,18 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:31:41 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/11 15:41:08 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:56:35 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+static int	check_isdigit(int num)
+{
+	if (num >= 48 && num <= 57)
+		return (1);
+	return (0);
+}
 
 static int	check_overflow(char *str)
 {

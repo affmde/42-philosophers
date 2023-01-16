@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:56:41 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/16 17:31:19 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:13:24 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_philo
 {
 	int					nbr;
 	int					meal_counter;
-	int					alive;
 	unsigned long		last_meal;
 	pthread_t			thread;
 	pthread_mutex_t		*r_fork;
@@ -33,7 +32,6 @@ typedef struct s_philo
 
 typedef struct s_info
 {
-
 	t_philo				*philos;
 	int					nbr_philos;
 	int					time_die;
@@ -48,17 +46,16 @@ typedef struct s_info
 t_info			*get_info(char **argv);
 int				atoi(const char *str);
 int				check_argc_validity(char **argv, int argc);
-int				check_isdigit(int num);
 int				nbr_of_digits(long n);
 int				philo_init(t_info *info);
 void			*philo_life(void *p);
-void			go_sleep(int t);
 unsigned long	timestamp(void);
 void			take_fork_msg(t_philo *philo);
 void			eating_msg(t_philo *philo);
 void			sleeping_msg(t_philo *philo);
 void			thinking_msg(t_philo *philo);
 void			dead_msg(t_philo *philo);
+int				take_fork_and_eat(t_philo *philo);
 void			eating(t_philo *philo);
 void			sleeping(t_philo *philo);
 void			clean_info(t_info *info);

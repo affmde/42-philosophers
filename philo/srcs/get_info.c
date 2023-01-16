@@ -6,13 +6,13 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:08:18 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/16 15:33:09 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:09:27 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static void	set_to_zero(t_info *info)
+static void	set_philos_to_zero(t_info *info)
 {
 	int	i;
 
@@ -38,21 +38,12 @@ static void	assign_args(char **argv, t_info	**info)
 static int	check_to_return(char **argv, t_info *info)
 {
 	if (pthread_mutex_init(&info->message, NULL))
-	{
-		free(info);
 		return (0);
-	}
 	assign_args(argv, &info);
 	if (argv[5] && atoi(argv[5]) == 0)
-	{
-		free(info);
 		return (0);
-	}
 	if (info->time_eat == 0 || info->nbr_philos == 0)
-	{
-		free(info);
 		return (0);
-	}
 	return (1);
 }
 
@@ -64,11 +55,14 @@ t_info	*get_info(char **argv)
 	if (!info)
 		return (0);
 	if (!check_to_return(argv, info))
+	{
+		free(info);
 		return (0);
+	}
 	info->philos = (t_philo *)malloc(sizeof(t_philo) * info->nbr_philos);
 	if (!info->philos)
 		return (0);
-	set_to_zero(info);
+	set_philos_to_zero(info);
 	info->start = timestamp();
 	return (info);
 }
