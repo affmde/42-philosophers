@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:08:18 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/16 18:09:27 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/17 12:06:31 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	assign_args(char **argv, t_info	**info)
 static int	check_to_return(char **argv, t_info *info)
 {
 	if (pthread_mutex_init(&info->message, NULL))
+		return (0);
+	if (pthread_mutex_init(&info->dead, NULL))
 		return (0);
 	assign_args(argv, &info);
 	if (argv[5] && atoi(argv[5]) == 0)

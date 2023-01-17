@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:54:51 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/16 13:25:59 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:55:20 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,10 @@ void	take_fork_msg(t_philo *philo)
 {
 	long long	time;
 
-	if (!is_philo_dead(philo->info))
-	{
-		pthread_mutex_lock(&philo->info->message);
-		time = timestamp() - philo->info->start;
-		printf("%lld %d has taken a fork.\n", time, philo->nbr);
-		pthread_mutex_unlock(&philo->info->message);
-	}
+	pthread_mutex_lock(&philo->info->message);
+	time = timestamp() - philo->info->start;
+	printf("%lld %d has taken a fork.\n", time, philo->nbr);
+	pthread_mutex_unlock(&philo->info->message);
 }
 
 void	eating_msg(t_philo *philo)
