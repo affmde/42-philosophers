@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:49:14 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/13 17:22:31 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:01:44 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	clean_info(t_info *info)
 	{
 		pthread_mutex_destroy(&info->message);
 		while (i < info->nbr_philos)
-			pthread_mutex_destroy(&info->philos[i++].l_fork);
+		{
+			pthread_mutex_destroy(&info->philos[i].l_fork);
+			pthread_mutex_destroy(&info->philos[i++].eat_mutex);
+		}
 		if (info->philos)
 			free(info->philos);
 		if (info)

@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:19:12 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/17 13:51:48 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:52:03 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,8 @@ unsigned long	timestamp(void)
 void	ft_usleep(unsigned long t)
 {
 	unsigned long	time;
-	unsigned long	end;
 
 	time = timestamp();
-	end = time + t;
-	while (timestamp() < end)
-		;
+	while (timestamp() - time < t)
+		usleep(150);
 }

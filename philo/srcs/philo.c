@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 12:03:42 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/17 16:21:38 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:04:39 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 int	enough_eat(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->eat_mutex);
 	if (philo->info->nbr_times_eat)
 	{
 		if (philo->meal_counter >= philo->info->nbr_times_eat)
+		{
+			pthread_mutex_unlock(&philo->eat_mutex);
 			return (1);
+		}
 	}
+	pthread_mutex_unlock(&philo->eat_mutex);
 	return (0);
 }
 
@@ -33,8 +38,7 @@ void	*philo_life(void *p)
 	{
 		if (!take_forks(philo))
 			return (0);
-		if (!philo->info->philo_dead)
-			eating(philo);
+		eating(philo);
 		if (!philo->info->philo_dead)
 			sleeping(philo);
 		if (!philo->info->philo_dead)
