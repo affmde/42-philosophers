@@ -1,6 +1,6 @@
-NAME = philo
+NAME = philo_bonus
 FLAGS = -Wall -Werror -Wextra
-SRCS = get_info.c utils.c check_validity.c philo_init.c philo.c messages.c philo_actions.c clean.c death.c
+SRCS = get_info.c utils.c check_validity.c simulation.c philo_life.c
 SRCSDEST = $(addprefix ./srcs/, $(SRCS))
 
 $(NAME): $(SRCSDEST) main.c

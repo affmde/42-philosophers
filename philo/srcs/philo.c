@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 12:03:42 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/18 17:04:39 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/19 13:52:29 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	*philo_life(void *p)
 		if (!take_forks(philo))
 			return (0);
 		eating(philo);
-		if (!philo->info->philo_dead)
-			sleeping(philo);
 		if (!philo->info->philo_dead)
 			thinking_msg(philo);
 	}

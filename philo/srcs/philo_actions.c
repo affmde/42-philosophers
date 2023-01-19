@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:14:29 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/18 17:15:46 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/19 13:51:34 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	eating(t_philo *philo)
 {
-	// pthread_mutex_lock(&philo->info->dead);
-	// pthread_mutex_unlock(&philo->info->dead);
 	pthread_mutex_lock(&philo->eat_mutex);
 	if (is_philo_dead(philo->info))
 	{
@@ -28,9 +26,10 @@ void	eating(t_philo *philo)
 	philo->last_meal = timestamp();
 	philo->meal_counter++;
 	ft_usleep(philo->info->time_eat);
+	pthread_mutex_unlock(&philo->eat_mutex);
 	pthread_mutex_unlock(&philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
-	pthread_mutex_unlock(&philo->eat_mutex);
+	sleeping(philo);
 }
 
 void	sleeping(t_philo *philo)
