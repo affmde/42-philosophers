@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:55:58 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/19 13:46:33 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:19:24 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	handle_death(t_info *info)
 		{
 			if (!check_dead(&info->philos[i]))
 			{
-				usleep(100);
 				dead_msg(&info->philos[i]);
 				return (0);
 			}

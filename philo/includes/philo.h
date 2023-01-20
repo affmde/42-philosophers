@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:56:41 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/18 16:56:24 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:06:48 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_philo
 	int					meal_counter;
 	unsigned long		last_meal;
 	pthread_t			thread;
-	pthread_mutex_t		eat_mutex;
 	pthread_mutex_t		*r_fork;
 	pthread_mutex_t		l_fork;
 	struct s_info		*info;
