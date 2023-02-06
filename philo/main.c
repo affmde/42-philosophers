@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:55:52 by andrferr          #+#    #+#             */
-/*   Updated: 2023/01/20 17:08:32 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:33:58 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,5 @@ int	main(int argc, char **argv)
 		return (1);
 	philo_init(info);
 	clean_info(info);
-	/*--------------------------------------------------------------------------*/
-	//Check how many times every philo ate
-	for (int i = 0; i < info->nbr_philos; i++)
-		printf("Philo %d ate %d times.\n", i + 1, info->philos[i].meal_counter);
-	printf("progrm finished at: %lu\n", timestamp() - info->start);
-	/*--------------------------------------------------------------------------*/
-
 	return (0);
 }
