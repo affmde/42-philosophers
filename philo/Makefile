@@ -11,7 +11,7 @@ $(NAME): $(SRCSDEST) main.c
 	cc $(FLAGS) -o $(NAME) main.c $(SRCSDEST) -lpthread
 
 clean:
-	rm -f OBJDST
+	rm -f $(OBJDST)
 
 fclean:
 	rm -f $(NAME)
