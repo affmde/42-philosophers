@@ -6,7 +6,7 @@
 /*   By: andrferr <andrferr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:14:29 by andrferr          #+#    #+#             */
-/*   Updated: 2023/02/06 11:19:53 by andrferr         ###   ########.fr       */
+/*   Updated: 2023/02/06 13:24:11 by andrferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	sleeping(t_philo *philo)
 
 int	take_forks(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->info->dead);
-	pthread_mutex_unlock(&philo->info->dead);
 	if (is_philo_dead(philo->info) || enough_eat(philo))
 		return (0);
 	pthread_mutex_lock(&philo->l_fork);
