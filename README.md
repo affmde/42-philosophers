@@ -1,7 +1,20 @@
+<div align="center">
 
-# 42-Philosophers
+# 42 - Philosophers
 
+<img alt="mac" src="https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white"/>
+<img alt="Linux" src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"/>
+<img alt="Ubuntu" src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white"/>
+<br>
+<img alt="c" src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white"/>
+<br>
+<img alt="size" src="https://img.shields.io/github/languages/code-size/affmde/42-philosophers"/>
+<img alt="total files" src="https://img.shields.io/github/directory-file-count/affmde/42-philosophers"/>
+<img alt="repo size" src="https://img.shields.io/github/repo-size/affmde/42-philosophers"/>
+<img alt="commits per month" src="https://img.shields.io/github/commit-activity/m/affmde/42-philosophers"/>
+</div>
 
+---
 
 ## ![description icon](https://cdn-icons-png.flaticon.com/32/2644/2644332.png)  Description
 In this project, you will learn the basics of threading a process.
