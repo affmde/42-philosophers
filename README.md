@@ -3,15 +3,15 @@
 
 
 
-## Description
+## ![description icon](https://cdn-icons-png.flaticon.com/32/2644/2644332.png)  Description
 In this project, you will learn the basics of threading a process.
 You will see how to create threads and you will discover mutexes
-## Rules
+## ![rules icon](https://cdn-icons-png.flaticon.com/32/3251/3251383.png) Rules
 You have to write a program for the mandatory part and another one for the bonus part
 (if you decide to do the bonus part). They both have to comply with the following rules:
 * Global variables are forbidden!
 * Your(s) program(s) should take the following arguments:
-    
+
     - **number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
 
 **number_of_philosophers**: The number of philosophers and also the number of forks.
@@ -30,32 +30,33 @@ philosopher dies.
 ## Output
 
  * Any state change of a philosopher must be formatted as follows:
- 
+
         timestamp_in_ms X has taken a fork
         timestamp_in_ms X is eating
         timestamp_in_ms X is sleeping
         timestamp_in_ms X is thinking
         timestamp_in_ms X died
-***Replace timestamp_in_ms with the current timestamp in milliseconds
+  ***Replace timestamp_in_ms with the current timestamp in milliseconds
 and X with the philosopher number.***
 
 
 * A displayed state message should not be mixed up with another message.
 * A message announcing a philosopher died should be displayed no more than 10 ms after the actual death of the philosopher.
 * Again, philosophers should avoid dying!
-## Instalation
 
+
+## ![install icon](https://cdn-icons-png.flaticon.com/32/427/427132.png) Install and run
 
 ```bash
-  git clone https://github.com/affmde/42-philosophers.git
-  cd 42-philosophers/philo
-  make
+  $git clone https://github.com/affmde/42-philosophers.git
+  $cd 42-philosophers/philo
+  $make
+  $./philo (number of philos, time to die, time to eat, time to sleep)
 ```
-Then just run the executable
-## Related projects
+  Just repplace the values according what you wish to test
 
-[42-Minishell](https://github.com/nascimento-jgb/Minishell)
-## Authors
+## ![relate icon](https://cdn-icons-png.flaticon.com/32/2875/2875800.png) Related projects
 
-- [@affmde](https://www.github.com/affmde) - Andre Miranda
+ - [42-Minishell](https://github.com/nascimento-jgb/Minishell)
+ - [42-Net practice](https://github.com/affmde/42-net_practice)
 

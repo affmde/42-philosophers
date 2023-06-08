@@ -8,7 +8,7 @@ OBJDST = $(addprefix ./srcs/, $(OBJ))
 all: $(NAME)
 
 $(NAME): $(SRCSDEST) main.c
-	cc $(FLAGS) -o $(NAME) main.c $(SRCSDEST) -lpthread
+	cc $(FLAGS) -o $(NAME) main.c $(SRCSDEST) -lpthread -g -fsanitize=thread
 
 clean:
 	rm -f $(OBJDST)
